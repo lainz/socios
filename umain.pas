@@ -6,13 +6,16 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, Grids;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, Grids, ucuotas;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    btnEditarSocio: TButton;
+    btnVerCuotas: TButton;
+    btnNuevoSocio: TButton;
     cbOrdenar: TComboBox;
     chkMostrarSociosEliminados: TCheckBox;
     DataSource1: TDataSource;
@@ -21,6 +24,7 @@ type
     lblOrdenar: TLabel;
     lblBuscar: TLabel;
     MainMenu1: TMainMenu;
+    miVerCuotas: TMenuItem;
     miEditarSocio: TMenuItem;
     miNuevoSocio: TMenuItem;
     miArchivo: TMenuItem;
@@ -28,19 +32,22 @@ type
     miSalir: TMenuItem;
     pnlMenu: TPanel;
     SQLQuery1: TSQLQuery;
+    procedure btnEditarSocioClick(Sender: TObject);
+    procedure btnNuevoSocioClick(Sender: TObject);
+    procedure btnVerCuotasClick(Sender: TObject);
     procedure cbOrdenarChange(Sender: TObject);
     procedure chkMostrarSociosEliminadosChange(Sender: TObject);
     procedure dbgSociosDblClick(Sender: TObject);
-    procedure dbgSociosDrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure miEditarSocioClick(Sender: TObject);
     procedure miNuevoSocioClick(Sender: TObject);
     procedure miSalirClick(Sender: TObject);
+    procedure miVerCuotasClick(Sender: TObject);
   private
     ordenarTabla: string;
+    procedure ActualizarBotones;
   public
 
   end;
@@ -64,13 +71,19 @@ end;
 
 procedure TfrmMain.miEditarSocioClick(Sender: TObject);
 begin
+  if SQLQuery1.RecordCount <= 0 then
+    exit;
+
   if Assigned(frmNuevoSocio) then
     frmNuevoSocio.Free;
   Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
   frmNuevoSocio.Caption := 'Editar Socio';
   frmNuevoSocio.LlenarCamposDesdeDB(SQLQuery1);
   case frmNuevoSocio.ShowModal of
-    mrOk: frmNuevoSocio.GuardarEdicionSocio(SQLQuery1);
+    mrOk: begin
+      frmNuevoSocio.GuardarEdicionSocio(SQLQuery1);
+      cbOrdenarChange(nil);
+    end;
   end;
   FreeAndNil(frmNuevoSocio);
 end;
@@ -82,7 +95,10 @@ begin
   Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
   frmNuevoSocio.Caption := 'Nuevo Socio';
   case frmNuevoSocio.ShowModal of
-    mrOk: frmNuevoSocio.GuardarNuevoSocio(SQLQuery1);
+    mrOk: begin
+      frmNuevoSocio.GuardarNuevoSocio(SQLQuery1);
+      cbOrdenarChange(nil);
+    end;
   end;
   FreeAndNil(frmNuevoSocio);
 end;
@@ -90,6 +106,30 @@ end;
 procedure TfrmMain.miSalirClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmMain.miVerCuotasClick(Sender: TObject);
+begin
+  if SQLQuery1.RecordCount <= 0 then
+    exit;
+
+  if Assigned(frmCuotas) then
+    frmCuotas.Free;
+  Application.CreateForm(TfrmCuotas, frmCuotas);
+  frmCuotas.Caption := 'Cuotas de ' + SQLQuery1.FieldByName('nombre').AsString;
+  frmCuotas.ShowModal;
+  FreeAndNil(frmNuevoSocio);
+end;
+
+procedure TfrmMain.ActualizarBotones;
+var
+  mostrar: boolean;
+begin
+  mostrar := SQLQuery1.RecordCount > 0;
+  btnEditarSocio.Enabled := mostrar;
+  btnVerCuotas.Enabled := mostrar;
+  miEditarSocio.Enabled := mostrar;
+  miVerCuotas.Enabled := mostrar;
 end;
 
 procedure TfrmMain.edtBuscarChange(Sender: TObject);
@@ -116,6 +156,7 @@ begin
   SQLQuery1.FilterOptions := [foCaseInsensitive];
   SQLQuery1.Filter := filter;
   SQLQuery1.Filtered := edtBuscar.Text <> '';
+  ActualizarBotones;
 end;
 
 procedure TfrmMain.cbOrdenarChange(Sender: TObject);
@@ -137,6 +178,22 @@ begin
   else
     SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE eliminado = ''F'' ORDER BY ' + ordenarTabla;
   SQLQuery1.Active := True;
+  ActualizarBotones;
+end;
+
+procedure TfrmMain.btnEditarSocioClick(Sender: TObject);
+begin
+  miEditarSocioClick(nil);
+end;
+
+procedure TfrmMain.btnNuevoSocioClick(Sender: TObject);
+begin
+  miNuevoSocioClick(nil);
+end;
+
+procedure TfrmMain.btnVerCuotasClick(Sender: TObject);
+begin
+  miVerCuotasClick(nil);
 end;
 
 procedure TfrmMain.chkMostrarSociosEliminadosChange(Sender: TObject);
@@ -147,12 +204,6 @@ end;
 procedure TfrmMain.dbgSociosDblClick(Sender: TObject);
 begin
   miEditarSocioClick(nil);
-end;
-
-procedure TfrmMain.dbgSociosDrawColumnCell(Sender: TObject; const Rect: TRect;
-  DataCol: Integer; Column: TColumn; State: TGridDrawState);
-begin
-
 end;
 
 procedure TfrmMain.dbgSociosTitleClick(Column: TColumn);

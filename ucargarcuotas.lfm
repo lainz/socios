@@ -1,0 +1,92 @@
+object frmCargarCuotas: TfrmCargarCuotas
+  Left = 430
+  Height = 105
+  Top = 119
+  Width = 237
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cargar Cuotas'
+  ClientHeight = 105
+  ClientWidth = 237
+  OnCreate = FormCreate
+  Position = poMainFormCenter
+  LCLVersion = '2.0.4.0'
+  object lblMes: TLabel
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 25
+    Caption = 'Mes:'
+    ParentColor = False
+  end
+  object cbMes: TComboBox
+    Left = 8
+    Height = 23
+    Top = 24
+    Width = 100
+    ItemHeight = 15
+    Items.Strings = (
+      '1'
+      '2'
+      '3'
+      '4'
+      '5'
+      '6'
+      '7'
+      '8'
+      '9'
+      '10'
+      '11'
+      '12'
+    )
+    Style = csDropDownList
+    TabOrder = 0
+  end
+  object lblAnio: TLabel
+    Left = 128
+    Height = 15
+    Top = 8
+    Width = 25
+    Caption = 'Año:'
+    ParentColor = False
+  end
+  object seAnio: TSpinEdit
+    Left = 128
+    Height = 23
+    Top = 24
+    Width = 98
+    MaxValue = 3000
+    MinValue = 2000
+    TabOrder = 1
+    Value = 2000
+  end
+  object pnlMenu: TPanel
+    Left = 0
+    Height = 50
+    Top = 55
+    Width = 237
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 50
+    ClientWidth = 237
+    TabOrder = 2
+    object btnGuardar: TButton
+      Left = 144
+      Height = 25
+      Top = 16
+      Width = 75
+      Caption = 'Guardar'
+      OnClick = btnGuardarClick
+      TabOrder = 0
+    end
+    object btnCancelar: TButton
+      Left = 56
+      Height = 25
+      Top = 16
+      Width = 75
+      Caption = 'Cancelar'
+      OnClick = btnCancelarClick
+      TabOrder = 1
+    end
+  end
+end

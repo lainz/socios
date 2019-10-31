@@ -1,0 +1,107 @@
+object frmCuotas: TfrmCuotas
+  Left = 535
+  Height = 400
+  Top = 203
+  Width = 640
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Cuotas'
+  ClientHeight = 400
+  ClientWidth = 640
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '2.0.4.0'
+  object pnlMenu: TPanel
+    Left = 0
+    Height = 66
+    Top = 0
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 66
+    ClientWidth = 640
+    TabOrder = 0
+    object btnCargar: TButton
+      Left = 544
+      Height = 25
+      Top = 24
+      Width = 75
+      Caption = 'Cargar'
+      OnClick = btnCargarClick
+      TabOrder = 0
+    end
+    object btnCambiarEstadoEliminado: TButton
+      Left = 376
+      Height = 25
+      Top = 24
+      Width = 155
+      Caption = 'Cambiar Estado Eliminado'
+      OnClick = btnCambiarEstadoEliminadoClick
+      TabOrder = 1
+    end
+  end
+  object dbgCuotas: TDBGrid
+    Left = 0
+    Height = 334
+    Top = 66
+    Width = 640
+    Align = alClient
+    AutoFillColumns = True
+    BorderStyle = bsNone
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'id'
+        Width = 0
+        Visible = False
+        FieldName = 'id'
+      end    
+      item
+        Title.Caption = 'idSocio'
+        Width = 0
+        Visible = False
+        FieldName = 'idsocio'
+      end    
+      item
+        Title.Caption = 'Mes'
+        Width = 207
+        FieldName = 'mes'
+      end    
+      item
+        Title.Caption = 'Año'
+        Width = 207
+        FieldName = 'anio'
+      end    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Eliminado'
+        Width = 209
+        ValueChecked = 'T'
+        ValueUnchecked = 'F'
+        FieldName = 'eliminado'
+      end>
+    DataSource = DataSource1
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgAutoSizeColumns, dgThumbTracking]
+    TabOrder = 1
+    TitleStyle = tsNative
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 146
+    top = 295
+  end
+  object SQLQuery1: TSQLQuery
+    PacketRecords = -1
+    FieldDefs = <>
+    SQL.Strings = (
+      ''
+    )
+    Options = [sqoKeepOpenOnCommit, sqoAutoApplyUpdates, sqoAutoCommit]
+    Params = <>
+    UpdateMode = upWhereAll
+    left = 148
+    top = 228
+  end
+end

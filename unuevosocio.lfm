@@ -1,8 +1,9 @@
 object frmNuevoSocio: TfrmNuevoSocio
-  Left = 430
+  Left = 603
   Height = 281
-  Top = 119
+  Top = 244
   Width = 480
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Editar Socio'
   ClientHeight = 281

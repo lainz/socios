@@ -78,7 +78,7 @@ begin
   if chkEliminado.Checked then
     socios.FieldByName('eliminado').AsString := SI
   else
-    socios.FieldByName('eliminado').AsString := NO
+    socios.FieldByName('eliminado').AsString := NO;
 end;
 
 procedure TfrmNuevoSocio.LlenarCamposDesdeDB(const socios: TSQLQuery);
