@@ -29,54 +29,63 @@ object frmMain: TfrmMain
       end    
       item
         Title.Caption = 'N°'
-        Width = 87
+        Width = 78
         FieldName = 'numero'
       end    
       item
         Title.Caption = 'Nombre'
-        Width = 87
+        Width = 78
         FieldName = 'nombre'
       end    
       item
         Title.Caption = 'Nacimiento'
-        Width = 87
+        Width = 78
         FieldName = 'nacimiento'
       end    
       item
         Title.Caption = 'Nacionalidad'
-        Width = 87
+        Width = 78
         FieldName = 'nacionalidad'
       end    
       item
         Title.Caption = 'Ingreso'
-        Width = 87
+        Width = 78
         FieldName = 'ingreso'
       end    
       item
         Title.Caption = 'Documento'
-        Width = 87
+        Width = 78
         FieldName = 'documento'
       end    
       item
         Title.Caption = 'Domicilio'
-        Width = 87
+        Width = 78
         FieldName = 'domicilio'
       end    
       item
         Title.Caption = 'Teléfono'
-        Width = 87
+        Width = 78
         FieldName = 'telefono'
       end    
       item
         Title.Caption = 'Jubilación'
-        Width = 87
+        Width = 78
         FieldName = 'jubilacion'
+      end    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        Title.Caption = 'Eliminado'
+        Width = 81
+        ValueChecked = 'T'
+        ValueUnchecked = 'F'
+        FieldName = 'eliminado'
       end>
     DataSource = DataSource1
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgAutoSizeColumns, dgThumbTracking]
     TabOrder = 0
     TitleStyle = tsNative
+    OnDrawColumnCell = dbgSociosDrawColumnCell
     OnDblClick = dbgSociosDblClick
     OnTitleClick = dbgSociosTitleClick
   end

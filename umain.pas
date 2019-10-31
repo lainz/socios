@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, Grids;
 
 type
 
@@ -31,6 +31,8 @@ type
     procedure cbOrdenarChange(Sender: TObject);
     procedure chkMostrarSociosEliminadosChange(Sender: TObject);
     procedure dbgSociosDblClick(Sender: TObject);
+    procedure dbgSociosDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -145,6 +147,12 @@ end;
 procedure TfrmMain.dbgSociosDblClick(Sender: TObject);
 begin
   miEditarSocioClick(nil);
+end;
+
+procedure TfrmMain.dbgSociosDrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+
 end;
 
 procedure TfrmMain.dbgSociosTitleClick(Column: TColumn);
