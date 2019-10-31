@@ -26,7 +26,7 @@ type
   private
 
   public
-    procedure GuardarCuota(SQLQuery: TSQLQuery; idSocio: String);
+    procedure GuardarCuota(SQLQuery: TSQLQuery; idSocio: string);
   end;
 
 var
@@ -54,9 +54,10 @@ begin
   ModalResult := mrCancel;
 end;
 
-procedure TfrmCargarCuotas.GuardarCuota(SQLQuery: TSQLQuery; idSocio: String);
+procedure TfrmCargarCuotas.GuardarCuota(SQLQuery: TSQLQuery; idSocio: string);
 begin
-  if SQLQuery.Locate('idsocio;mes;anio', VarArrayOf([idSocio,StrToInt(cbMes.Text), seAnio.Value]), []) then
+  if SQLQuery.Locate('idsocio;mes;anio',
+    VarArrayOf([idSocio, StrToInt(cbMes.Text), seAnio.Value]), []) then
     SQLQuery.Edit
   else
     SQLQuery.Append;
@@ -69,4 +70,3 @@ begin
 end;
 
 end.
-

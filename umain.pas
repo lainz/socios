@@ -80,7 +80,8 @@ begin
   frmNuevoSocio.Caption := 'Editar Socio';
   frmNuevoSocio.LlenarCamposDesdeDB(SQLQuery1);
   case frmNuevoSocio.ShowModal of
-    mrOk: begin
+    mrOk:
+    begin
       frmNuevoSocio.GuardarEdicionSocio(SQLQuery1);
       cbOrdenarChange(nil);
     end;
@@ -95,7 +96,8 @@ begin
   Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
   frmNuevoSocio.Caption := 'Nuevo Socio';
   case frmNuevoSocio.ShowModal of
-    mrOk: begin
+    mrOk:
+    begin
       frmNuevoSocio.GuardarNuevoSocio(SQLQuery1);
       cbOrdenarChange(nil);
     end;
@@ -117,6 +119,7 @@ begin
     frmCuotas.Free;
   Application.CreateForm(TfrmCuotas, frmCuotas);
   frmCuotas.Caption := 'Cuotas de ' + SQLQuery1.FieldByName('nombre').AsString;
+  frmCuotas.idSocio := SQLQuery1.FieldByName('id').AsString;
   frmCuotas.ShowModal;
   FreeAndNil(frmNuevoSocio);
 end;
@@ -176,7 +179,8 @@ begin
   if (chkMostrarSociosEliminados.Checked) then
     SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla
   else
-    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE eliminado = ''F'' ORDER BY ' + ordenarTabla;
+    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE eliminado = ''F'' ORDER BY ' +
+      ordenarTabla;
   SQLQuery1.Active := True;
   ActualizarBotones;
 end;

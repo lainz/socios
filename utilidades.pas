@@ -11,11 +11,11 @@ const
   SI = 'T';
   NO = 'F';
 
-function ObtenerGUID: String;
+function ObtenerGUID: string;
 
 implementation
 
-function ObtenerGUID: String;
+function ObtenerGUID: string;
 var
   guid: TGuid;
 begin
@@ -27,4 +27,3 @@ begin
 end;
 
 end.
-

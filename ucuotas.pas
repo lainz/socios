@@ -5,7 +5,7 @@ unit ucuotas;
 interface
 
 uses
-  Classes, SysUtils, db, sqldb, Forms, Controls, Graphics, Dialogs, DBGrids,
+  Classes, SysUtils, DB, sqldb, Forms, Controls, Graphics, Dialogs, DBGrids,
   ExtCtrls, StdCtrls, ucargarcuotas, utilidades, dmsqlite;
 
 type
@@ -26,7 +26,7 @@ type
   private
     procedure Mostrar;
   public
-    idSocio: String;
+    idSocio: string;
   end;
 
 var
@@ -50,7 +50,8 @@ begin
     frmCargarCuotas.Free;
   Application.CreateForm(TfrmCargarCuotas, frmCargarCuotas);
   case frmCargarCuotas.ShowModal of
-    mrOk: begin
+    mrOk:
+    begin
       frmCargarCuotas.GuardarCuota(SQLQuery1, idSocio);
       Mostrar;
     end;
@@ -62,9 +63,9 @@ procedure TfrmCuotas.btnCambiarEstadoEliminadoClick(Sender: TObject);
 begin
   SQLQuery1.Edit;
   if SQLQuery1.FieldByName('eliminado').AsString = SI then
-     SQLQuery1.FieldByName('eliminado').AsString := NO
+    SQLQuery1.FieldByName('eliminado').AsString := NO
   else
-     SQLQuery1.FieldByName('eliminado').AsString := SI;
+    SQLQuery1.FieldByName('eliminado').AsString := SI;
   SQLQuery1.Post;
 end;
 
@@ -76,10 +77,10 @@ end;
 procedure TfrmCuotas.Mostrar;
 begin
   SQLQuery1.Active := False;
-  SQLQuery1.SQL.Text := 'SELECT * FROM CUOTAS WHERE idsocio = ' + QuotedStr(idSocio) + ' ORDER BY anio DESC, mes DESC';
+  SQLQuery1.SQL.Text := 'SELECT * FROM cuotas WHERE idsocio = ' +
+    QuotedStr(idSocio) + ' ORDER BY anio DESC, mes DESC';
   SQLQuery1.Active := True;
   btnCambiarEstadoEliminado.Enabled := SQLQuery1.RecordCount > 0;
 end;
 
 end.
-

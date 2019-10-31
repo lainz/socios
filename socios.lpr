@@ -5,13 +5,19 @@ program socios;
 uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, umain, dmsqlite, unuevosocio, utilidades, ucuotas, ucargarcuotas { you can add units after this };
+  Forms,
+  umain,
+  dmsqlite,
+  unuevosocio,
+  utilidades,
+  ucuotas,
+  ucargarcuotas { you can add units after this };
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource := True;
-  Application.Title := 'Socios';
+  Application.Title:='Socios';
   Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TDataModule1, DataModule1);
@@ -19,5 +25,3 @@ begin
   Application.CreateForm(TfrmCuotas, frmCuotas);
   Application.Run;
 end.
-
-
