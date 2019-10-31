@@ -6,23 +6,32 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, dmsqlite;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    cbOrdenar: TComboBox;
     DataSource1: TDataSource;
     dbgSocios: TDBGrid;
     edtBuscar: TEdit;
+    lblOrdenar: TLabel;
     lblBuscar: TLabel;
+    MainMenu1: TMainMenu;
+    miArchivo: TMenuItem;
+    N1: TMenuItem;
+    miSalir: TMenuItem;
     Panel1: TPanel;
     SQLQuery1: TSQLQuery;
+    procedure cbOrdenarChange(Sender: TObject);
+    procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure miSalirClick(Sender: TObject);
   private
-
+    ordenarTabla: String;
   public
 
   end;
@@ -40,7 +49,13 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   SQLQuery1.DataBase := dmsqlite.DataModule1.SQLite3Connection1;
   SQLQuery1.Transaction := dmsqlite.DataModule1.SQLTransaction1;
-  SQLQuery1.Active := True;
+  cbOrdenar.ItemIndex := 1;
+  cbOrdenarChange(nil);
+end;
+
+procedure TfrmMain.miSalirClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TfrmMain.edtBuscarChange(Sender: TObject);
@@ -67,6 +82,30 @@ begin
   SQLQuery1.FilterOptions := [foCaseInsensitive];
   SQLQuery1.Filter := filter;
   SQLQuery1.Filtered := edtBuscar.Text <> '';
+end;
+
+procedure TfrmMain.cbOrdenarChange(Sender: TObject);
+begin
+  case cbOrdenar.ItemIndex of
+    0: ordenarTabla := 'numero';
+    1: ordenarTabla := 'nombre';
+    2: ordenarTabla := 'nacimiento';
+    3: ordenarTabla := 'nacionalidad';
+    4: ordenarTabla := 'ingreso';
+    5: ordenarTabla := 'documento';
+    6: ordenarTabla := 'domicilio';
+    7: ordenarTabla := 'telefono';
+    8: ordenarTabla := 'jubilacion';
+  end;
+  SQLQuery1.Active := False;
+  SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla;
+  SQLQuery1.Active := True;
+end;
+
+procedure TfrmMain.dbgSociosTitleClick(Column: TColumn);
+begin
+  cbOrdenar.ItemIndex := Column.Index-1;
+  cbOrdenarChange(nil);
 end;
 
 end.

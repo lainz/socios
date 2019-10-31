@@ -1,20 +1,21 @@
 object frmMain: TfrmMain
   Left = 436
-  Height = 700
+  Height = 500
   Top = 161
-  Width = 1024
+  Width = 800
   ActiveControl = edtBuscar
   Caption = 'Socios'
-  ClientHeight = 700
-  ClientWidth = 1024
+  ClientHeight = 480
+  ClientWidth = 800
+  Menu = MainMenu1
   OnCreate = FormCreate
+  Position = poScreenCenter
   LCLVersion = '2.0.4.0'
-  WindowState = wsMaximized
   object dbgSocios: TDBGrid
     Left = 0
-    Height = 634
+    Height = 414
     Top = 66
-    Width = 1024
+    Width = 800
     Align = alClient
     AutoFillColumns = True
     BorderStyle = bsNone
@@ -28,63 +29,66 @@ object frmMain: TfrmMain
       end    
       item
         Title.Caption = 'N°'
-        Width = 110
+        Width = 87
         FieldName = 'numero'
       end    
       item
         Title.Caption = 'Nombre'
-        Width = 110
+        Width = 87
         FieldName = 'nombre'
       end    
       item
         Title.Caption = 'Nacimiento'
-        Width = 110
+        Width = 87
         FieldName = 'nacimiento'
       end    
       item
         Title.Caption = 'Nacionalidad'
-        Width = 110
+        Width = 87
         FieldName = 'nacionalidad'
       end    
       item
         Title.Caption = 'Ingreso'
-        Width = 110
+        Width = 87
         FieldName = 'ingreso'
       end    
       item
         Title.Caption = 'Documento'
-        Width = 110
+        Width = 87
         FieldName = 'documento'
       end    
       item
         Title.Caption = 'Domicilio'
-        Width = 110
+        Width = 87
         FieldName = 'domicilio'
       end    
       item
         Title.Caption = 'Teléfono'
-        Width = 110
+        Width = 87
         FieldName = 'telefono'
       end    
       item
         Title.Caption = 'Jubilación'
-        Width = 115
+        Width = 87
         FieldName = 'jubilacion'
       end>
     DataSource = DataSource1
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns, dgRowHighlight]
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgAutoSizeColumns, dgThumbTracking]
     TabOrder = 0
     TitleStyle = tsNative
+    OnTitleClick = dbgSociosTitleClick
   end
   object Panel1: TPanel
     Left = 0
     Height = 66
     Top = 0
-    Width = 1024
+    Width = 800
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 66
-    ClientWidth = 1024
+    ClientWidth = 800
+    ParentColor = False
     TabOrder = 1
     object edtBuscar: TEdit
       Left = 16
@@ -98,8 +102,39 @@ object frmMain: TfrmMain
       Left = 16
       Height = 15
       Top = 16
-      Width = 35
-      Caption = 'Buscar'
+      Width = 38
+      Caption = 'Buscar:'
+      ParentColor = False
+    end
+    object cbOrdenar: TComboBox
+      Left = 272
+      Height = 23
+      Top = 32
+      Width = 96
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Número'
+        'Nombre'
+        'Nacimiento'
+        'Nacionalidad'
+        'Ingreso'
+        'Documento'
+        'Domicilio'
+        'Teléfono'
+        'Jubilación'
+      )
+      OnChange = cbOrdenarChange
+      Style = csDropDownList
+      TabOrder = 1
+      Text = 'Número'
+    end
+    object lblOrdenar: TLabel
+      Left = 272
+      Height = 15
+      Top = 16
+      Width = 67
+      Caption = 'Ordenar por:'
       ParentColor = False
     end
   end
@@ -119,5 +154,19 @@ object frmMain: TfrmMain
     UpdateMode = upWhereAll
     left = 118
     top = 192
+  end
+  object MainMenu1: TMainMenu
+    left = 118
+    top = 136
+    object miArchivo: TMenuItem
+      Caption = 'Archivo'
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object miSalir: TMenuItem
+        Caption = 'Salir'
+        OnClick = miSalirClick
+      end
+    end
   end
 end
