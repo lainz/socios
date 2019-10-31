@@ -1,0 +1,176 @@
+object frmNuevoSocio: TfrmNuevoSocio
+  Left = 430
+  Height = 280
+  Top = 119
+  Width = 480
+  BorderStyle = bsDialog
+  Caption = 'Editar Socio'
+  ClientHeight = 280
+  ClientWidth = 480
+  Position = poMainFormCenter
+  LCLVersion = '2.0.4.0'
+  object lblNumero: TLabel
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 47
+    Caption = 'Número:'
+    ParentColor = False
+  end
+  object edtNumero: TEdit
+    Left = 8
+    Height = 23
+    Top = 24
+    Width = 80
+    TabOrder = 0
+  end
+  object lblNombre: TLabel
+    Left = 8
+    Height = 15
+    Top = 64
+    Width = 47
+    Caption = 'Nombre:'
+    ParentColor = False
+  end
+  object edtNombre: TEdit
+    Left = 8
+    Height = 23
+    Top = 80
+    Width = 144
+    TabOrder = 2
+  end
+  object lblNacimiento: TLabel
+    Left = 168
+    Height = 15
+    Top = 64
+    Width = 65
+    Caption = 'Nacimiento:'
+    ParentColor = False
+  end
+  object edtNacimiento: TEdit
+    Left = 168
+    Height = 23
+    Top = 80
+    Width = 144
+    TabOrder = 3
+  end
+  object lblNacionalidad: TLabel
+    Left = 328
+    Height = 15
+    Top = 64
+    Width = 73
+    Caption = 'Nacionalidad:'
+    ParentColor = False
+  end
+  object edtNacionalidad: TEdit
+    Left = 328
+    Height = 23
+    Top = 80
+    Width = 144
+    TabOrder = 4
+  end
+  object lblIngreso: TLabel
+    Left = 104
+    Height = 15
+    Top = 8
+    Width = 42
+    Caption = 'Ingreso:'
+    ParentColor = False
+  end
+  object edtIngreso: TEdit
+    Left = 104
+    Height = 23
+    Top = 24
+    Width = 80
+    TabOrder = 1
+  end
+  object lblDocumento: TLabel
+    Left = 8
+    Height = 15
+    Top = 120
+    Width = 66
+    Caption = 'Documento:'
+    ParentColor = False
+  end
+  object edtDocumento: TEdit
+    Left = 8
+    Height = 23
+    Top = 136
+    Width = 144
+    TabOrder = 5
+  end
+  object lblDomicilio: TLabel
+    Left = 168
+    Height = 15
+    Top = 120
+    Width = 54
+    Caption = 'Domicilio:'
+    ParentColor = False
+  end
+  object edtDomicilio: TEdit
+    Left = 168
+    Height = 23
+    Top = 136
+    Width = 144
+    TabOrder = 6
+  end
+  object lblTelefono: TLabel
+    Left = 328
+    Height = 15
+    Top = 120
+    Width = 48
+    Caption = 'Teléfono:'
+    ParentColor = False
+  end
+  object edtTelefono: TEdit
+    Left = 328
+    Height = 23
+    Top = 136
+    Width = 144
+    TabOrder = 7
+  end
+  object lblJubilacion: TLabel
+    Left = 8
+    Height = 15
+    Top = 176
+    Width = 56
+    Caption = 'Jubilación:'
+    ParentColor = False
+  end
+  object edtJubilacion: TEdit
+    Left = 8
+    Height = 23
+    Top = 192
+    Width = 144
+    TabOrder = 8
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 230
+    Width = 480
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 50
+    ClientWidth = 480
+    TabOrder = 9
+    object btnGuardar: TButton
+      Left = 392
+      Height = 25
+      Top = 16
+      Width = 75
+      Caption = 'Guardar'
+      OnClick = btnGuardarClick
+      TabOrder = 0
+    end
+    object btnCancelar: TButton
+      Left = 304
+      Height = 25
+      Top = 16
+      Width = 75
+      Caption = 'Cancelar'
+      OnClick = btnCancelarClick
+      TabOrder = 1
+    end
+  end
+end

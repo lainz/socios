@@ -5,9 +5,7 @@ program socios;
 uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms,
-  umain,
-  dmsqlite { you can add units after this };
+  Forms, umain, dmsqlite, unuevosocio, utilidades { you can add units after this };
 
 {$R *.res}
 

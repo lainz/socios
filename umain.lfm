@@ -160,6 +160,14 @@ object frmMain: TfrmMain
     top = 136
     object miArchivo: TMenuItem
       Caption = 'Archivo'
+      object miNuevoSocio: TMenuItem
+        Caption = 'Nuevo Socio'
+        OnClick = miNuevoSocioClick
+      end
+      object miEditarSocio: TMenuItem
+        Caption = 'Editar Socio'
+        OnClick = miEditarSocioClick
+      end
       object N1: TMenuItem
         Caption = '-'
       end

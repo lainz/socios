@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, usocios;
 
 type
 
@@ -20,6 +20,8 @@ type
     lblOrdenar: TLabel;
     lblBuscar: TLabel;
     MainMenu1: TMainMenu;
+    miEditarSocio: TMenuItem;
+    miNuevoSocio: TMenuItem;
     miArchivo: TMenuItem;
     N1: TMenuItem;
     miSalir: TMenuItem;
@@ -29,9 +31,11 @@ type
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure miEditarSocioClick(Sender: TObject);
+    procedure miNuevoSocioClick(Sender: TObject);
     procedure miSalirClick(Sender: TObject);
   private
-    ordenarTabla: String;
+    ordenarTabla: string;
   public
 
   end;
@@ -51,6 +55,31 @@ begin
   SQLQuery1.Transaction := dmsqlite.DataModule1.SQLTransaction1;
   cbOrdenar.ItemIndex := 1;
   cbOrdenarChange(nil);
+end;
+
+procedure TfrmMain.miEditarSocioClick(Sender: TObject);
+begin
+  if Assigned(frmNuevoSocio) then
+    frmNuevoSocio.Free;
+  Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
+  frmNuevoSocio.Caption := 'Editar Socio';
+  frmNuevoSocio.LlenarCamposDesdeDB(SQLQuery1);
+  case frmNuevoSocio.ShowModal of
+    mrOk: frmNuevoSocio.GuardarEdicionSocio(SQLQuery1);
+  end;
+  FreeAndNil(frmNuevoSocio);
+end;
+
+procedure TfrmMain.miNuevoSocioClick(Sender: TObject);
+begin
+  if Assigned(frmNuevoSocio) then
+    frmNuevoSocio.Free;
+  Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
+  frmNuevoSocio.Caption := 'Nuevo Socio';
+  case frmNuevoSocio.ShowModal of
+    mrOk: frmNuevoSocio.GuardarNuevoSocio(SQLQuery1);
+  end;
+  FreeAndNil(frmNuevoSocio);
 end;
 
 procedure TfrmMain.miSalirClick(Sender: TObject);
@@ -75,9 +104,9 @@ begin
     if filter <> '' then
       filter := filter + ' and ';
     filter := filter + '((numero=' + txt + ') or (nombre=' + txt +
-      ') or (nacimiento=' + txt + ') or (nacionalidad=' + txt + ') or (ingreso=' +
-      txt + ') or (documento=' + txt + ') or (domicilio=' + txt + ') or (telefono=' +
-      txt + ') or (jubilacion=' + txt + '))';
+      ') or (nacimiento=' + txt + ') or (nacionalidad=' + txt +
+      ') or (ingreso=' + txt + ') or (documento=' + txt + ') or (domicilio=' +
+      txt + ') or (telefono=' + txt + ') or (jubilacion=' + txt + '))';
   end;
   SQLQuery1.FilterOptions := [foCaseInsensitive];
   SQLQuery1.Filter := filter;
@@ -104,7 +133,7 @@ end;
 
 procedure TfrmMain.dbgSociosTitleClick(Column: TColumn);
 begin
-  cbOrdenar.ItemIndex := Column.Index-1;
+  cbOrdenar.ItemIndex := Column.Index - 1;
   cbOrdenarChange(nil);
 end;
 
