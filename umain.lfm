@@ -77,9 +77,10 @@ object frmMain: TfrmMain
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgAutoSizeColumns, dgThumbTracking]
     TabOrder = 0
     TitleStyle = tsNative
+    OnDblClick = dbgSociosDblClick
     OnTitleClick = dbgSociosTitleClick
   end
-  object Panel1: TPanel
+  object pnlMenu: TPanel
     Left = 0
     Height = 66
     Top = 0
@@ -137,6 +138,15 @@ object frmMain: TfrmMain
       Caption = 'Ordenar por:'
       ParentColor = False
     end
+    object chkMostrarSociosEliminados: TCheckBox
+      Left = 384
+      Height = 19
+      Top = 32
+      Width = 158
+      Caption = 'Mostrar socios eliminados'
+      OnChange = chkMostrarSociosEliminadosChange
+      TabOrder = 2
+    end
   end
   object DataSource1: TDataSource
     DataSet = SQLQuery1
@@ -152,8 +162,8 @@ object frmMain: TfrmMain
     Options = [sqoKeepOpenOnCommit, sqoAutoApplyUpdates, sqoAutoCommit]
     Params = <>
     UpdateMode = upWhereAll
-    left = 118
-    top = 192
+    left = 120
+    top = 200
   end
   object MainMenu1: TMainMenu
     left = 118

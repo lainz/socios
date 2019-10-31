@@ -7,6 +7,10 @@ interface
 uses
   Classes, SysUtils;
 
+const
+  SI = 'T';
+  NO = 'F';
+
 function ObtenerGUID: String;
 
 implementation

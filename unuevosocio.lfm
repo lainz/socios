@@ -1,11 +1,11 @@
 object frmNuevoSocio: TfrmNuevoSocio
   Left = 430
-  Height = 280
+  Height = 281
   Top = 119
   Width = 480
   BorderStyle = bsDialog
   Caption = 'Editar Socio'
-  ClientHeight = 280
+  ClientHeight = 281
   ClientWidth = 480
   Position = poMainFormCenter
   LCLVersion = '2.0.4.0'
@@ -21,7 +21,8 @@ object frmNuevoSocio: TfrmNuevoSocio
     Left = 8
     Height = 23
     Top = 24
-    Width = 80
+    Width = 144
+    MaxLength = 50
     TabOrder = 0
   end
   object lblNombre: TLabel
@@ -37,7 +38,8 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 80
     Width = 144
-    TabOrder = 2
+    MaxLength = 50
+    TabOrder = 3
   end
   object lblNacimiento: TLabel
     Left = 168
@@ -52,7 +54,8 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 80
     Width = 144
-    TabOrder = 3
+    MaxLength = 50
+    TabOrder = 4
   end
   object lblNacionalidad: TLabel
     Left = 328
@@ -67,10 +70,11 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 80
     Width = 144
-    TabOrder = 4
+    MaxLength = 50
+    TabOrder = 5
   end
   object lblIngreso: TLabel
-    Left = 104
+    Left = 168
     Height = 15
     Top = 8
     Width = 42
@@ -78,10 +82,11 @@ object frmNuevoSocio: TfrmNuevoSocio
     ParentColor = False
   end
   object edtIngreso: TEdit
-    Left = 104
+    Left = 168
     Height = 23
     Top = 24
-    Width = 80
+    Width = 144
+    MaxLength = 50
     TabOrder = 1
   end
   object lblDocumento: TLabel
@@ -97,7 +102,8 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 136
     Width = 144
-    TabOrder = 5
+    MaxLength = 50
+    TabOrder = 6
   end
   object lblDomicilio: TLabel
     Left = 168
@@ -112,7 +118,8 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 136
     Width = 144
-    TabOrder = 6
+    MaxLength = 50
+    TabOrder = 7
   end
   object lblTelefono: TLabel
     Left = 328
@@ -127,27 +134,29 @@ object frmNuevoSocio: TfrmNuevoSocio
     Height = 23
     Top = 136
     Width = 144
-    TabOrder = 7
+    MaxLength = 50
+    TabOrder = 8
   end
   object lblJubilacion: TLabel
-    Left = 8
+    Left = 328
     Height = 15
-    Top = 176
+    Top = 8
     Width = 56
     Caption = 'Jubilación:'
     ParentColor = False
   end
   object edtJubilacion: TEdit
-    Left = 8
+    Left = 328
     Height = 23
-    Top = 192
+    Top = 24
     Width = 144
-    TabOrder = 8
+    MaxLength = 50
+    TabOrder = 2
   end
-  object Panel1: TPanel
+  object pnlMenu: TPanel
     Left = 0
     Height = 50
-    Top = 230
+    Top = 231
     Width = 480
     Align = alBottom
     BevelOuter = bvNone
@@ -172,5 +181,14 @@ object frmNuevoSocio: TfrmNuevoSocio
       OnClick = btnCancelarClick
       TabOrder = 1
     end
+  end
+  object chkEliminado: TCheckBox
+    Left = 8
+    Height = 19
+    Top = 176
+    Width = 73
+    Caption = 'Eliminado'
+    TabOrder = 10
+    TabStop = False
   end
 end

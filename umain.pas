@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, usocios;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio;
 
 type
 
@@ -14,6 +14,7 @@ type
 
   TfrmMain = class(TForm)
     cbOrdenar: TComboBox;
+    chkMostrarSociosEliminados: TCheckBox;
     DataSource1: TDataSource;
     dbgSocios: TDBGrid;
     edtBuscar: TEdit;
@@ -25,9 +26,11 @@ type
     miArchivo: TMenuItem;
     N1: TMenuItem;
     miSalir: TMenuItem;
-    Panel1: TPanel;
+    pnlMenu: TPanel;
     SQLQuery1: TSQLQuery;
     procedure cbOrdenarChange(Sender: TObject);
+    procedure chkMostrarSociosEliminadosChange(Sender: TObject);
+    procedure dbgSociosDblClick(Sender: TObject);
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -127,8 +130,21 @@ begin
     8: ordenarTabla := 'jubilacion';
   end;
   SQLQuery1.Active := False;
-  SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla;
+  if (chkMostrarSociosEliminados.Checked) then
+    SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla
+  else
+    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE eliminado = ''F'' ORDER BY ' + ordenarTabla;
   SQLQuery1.Active := True;
+end;
+
+procedure TfrmMain.chkMostrarSociosEliminadosChange(Sender: TObject);
+begin
+  cbOrdenarChange(nil);
+end;
+
+procedure TfrmMain.dbgSociosDblClick(Sender: TObject);
+begin
+  miEditarSocioClick(nil);
 end;
 
 procedure TfrmMain.dbgSociosTitleClick(Column: TColumn);
