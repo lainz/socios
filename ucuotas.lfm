@@ -36,7 +36,7 @@ object frmCuotas: TfrmCuotas
       Height = 25
       Top = 24
       Width = 155
-      Caption = 'Cambiar Estado Eliminado'
+      Caption = 'Cambiar Estado Pagado'
       OnClick = btnCambiarEstadoEliminadoClick
       TabOrder = 1
     end
@@ -75,11 +75,11 @@ object frmCuotas: TfrmCuotas
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        Title.Caption = 'Eliminado'
+        Title.Caption = 'Pagado'
         Width = 209
         ValueChecked = 'T'
         ValueUnchecked = 'F'
-        FieldName = 'eliminado'
+        FieldName = 'pagado'
       end>
     DataSource = DataSource1
     FixedCols = 0

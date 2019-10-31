@@ -62,10 +62,10 @@ end;
 procedure TfrmCuotas.btnCambiarEstadoEliminadoClick(Sender: TObject);
 begin
   SQLQuery1.Edit;
-  if SQLQuery1.FieldByName('eliminado').AsString = SI then
-    SQLQuery1.FieldByName('eliminado').AsString := NO
+  if SQLQuery1.FieldByName('pagado').AsString = SI then
+    SQLQuery1.FieldByName('pagado').AsString := NO
   else
-    SQLQuery1.FieldByName('eliminado').AsString := SI;
+    SQLQuery1.FieldByName('pagado').AsString := SI;
   SQLQuery1.Post;
 end;
 

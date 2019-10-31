@@ -187,8 +187,10 @@ object frmNuevoSocio: TfrmNuevoSocio
     Left = 8
     Height = 19
     Top = 176
-    Width = 73
-    Caption = 'Eliminado'
+    Width = 54
+    Caption = 'Activo'
+    Checked = True
+    State = cbChecked
     TabOrder = 10
     TabStop = False
   end

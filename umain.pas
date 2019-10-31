@@ -71,7 +71,7 @@ end;
 
 procedure TfrmMain.miEditarSocioClick(Sender: TObject);
 begin
-  if SQLQuery1.RecordCount <= 0 then
+  if SQLQuery1.IsEmpty then
     exit;
 
   if Assigned(frmNuevoSocio) then
@@ -112,7 +112,7 @@ end;
 
 procedure TfrmMain.miVerCuotasClick(Sender: TObject);
 begin
-  if SQLQuery1.RecordCount <= 0 then
+  if SQLQuery1.IsEmpty then
     exit;
 
   if Assigned(frmCuotas) then
@@ -128,7 +128,7 @@ procedure TfrmMain.ActualizarBotones;
 var
   mostrar: boolean;
 begin
-  mostrar := SQLQuery1.RecordCount > 0;
+  mostrar := not SQLQuery1.IsEmpty;
   btnEditarSocio.Enabled := mostrar;
   btnVerCuotas.Enabled := mostrar;
   miEditarSocio.Enabled := mostrar;
@@ -179,7 +179,7 @@ begin
   if (chkMostrarSociosEliminados.Checked) then
     SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla
   else
-    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE eliminado = ''F'' ORDER BY ' +
+    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE activo = ''T'' ORDER BY ' +
       ordenarTabla;
   SQLQuery1.Active := True;
   ActualizarBotones;

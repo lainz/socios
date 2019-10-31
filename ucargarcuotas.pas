@@ -65,7 +65,7 @@ begin
   SQLQuery.FieldByName('idsocio').AsString := idSocio;
   SQLQuery.FieldByName('mes').AsInteger := StrToInt(cbMes.Text);
   SQLQuery.FieldByName('anio').AsInteger := seAnio.Value;
-  SQLQuery.FieldByName('eliminado').AsString := NO;
+  SQLQuery.FieldByName('pagado').AsString := SI;
   SQLQuery.Post;
 end;
 

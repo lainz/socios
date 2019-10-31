@@ -76,9 +76,9 @@ begin
   socios.FieldByName('telefono').AsString := edtTelefono.Text;
   socios.FieldByName('jubilacion').AsString := edtJubilacion.Text;
   if chkEliminado.Checked then
-    socios.FieldByName('eliminado').AsString := SI
+    socios.FieldByName('activo').AsString := SI
   else
-    socios.FieldByName('eliminado').AsString := NO;
+    socios.FieldByName('activo').AsString := NO;
 end;
 
 procedure TfrmNuevoSocio.LlenarCamposDesdeDB(const socios: TSQLQuery);
@@ -92,7 +92,7 @@ begin
   edtDomicilio.Text := socios.FieldByName('domicilio').AsString;
   edtTelefono.Text := socios.FieldByName('telefono').AsString;
   edtJubilacion.Text := socios.FieldByName('jubilacion').AsString;
-  chkEliminado.Checked := socios.FieldByName('eliminado').AsString = SI;
+  chkEliminado.Checked := socios.FieldByName('activo').AsString = SI;
 end;
 
 procedure TfrmNuevoSocio.GuardarNuevoSocio(const socios: TSQLQuery);
