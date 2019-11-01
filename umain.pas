@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
-  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, Grids, ucuotas;
+  DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, ucuotas,
+  utilidades;
 
 type
 
@@ -41,10 +42,12 @@ type
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
     procedure miEditarSocioClick(Sender: TObject);
     procedure miNuevoSocioClick(Sender: TObject);
     procedure miSalirClick(Sender: TObject);
     procedure miVerCuotasClick(Sender: TObject);
+    procedure pnlMenuPaint(Sender: TObject);
   private
     ordenarTabla: string;
     procedure ActualizarBotones;
@@ -67,6 +70,14 @@ begin
   SQLQuery1.Transaction := dmsqlite.DataModule1.SQLTransaction1;
   cbOrdenar.ItemIndex := 1;
   cbOrdenarChange(nil);
+end;
+
+procedure TfrmMain.FormPaint(Sender: TObject);
+var
+  pnl: TForm;
+begin
+  pnl := TForm(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
 end;
 
 procedure TfrmMain.miEditarSocioClick(Sender: TObject);
@@ -122,6 +133,14 @@ begin
   frmCuotas.idSocio := SQLQuery1.FieldByName('id').AsString;
   frmCuotas.ShowModal;
   FreeAndNil(frmNuevoSocio);
+end;
+
+procedure TfrmMain.pnlMenuPaint(Sender: TObject);
+var
+  pnl: TPanel;
+begin
+  pnl := TPanel(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
 end;
 
 procedure TfrmMain.ActualizarBotones;

@@ -11,16 +11,19 @@ object frmMain: TfrmMain
   Constraints.MinWidth = 800
   Menu = MainMenu1
   OnCreate = FormCreate
+  OnPaint = FormPaint
   Position = poScreenCenter
   LCLVersion = '2.0.4.0'
   object dbgSocios: TDBGrid
-    Left = 0
-    Height = 414
+    Left = 8
+    Height = 406
     Top = 66
-    Width = 800
+    Width = 784
     Align = alClient
     AutoFillColumns = True
-    BorderStyle = bsNone
+    BorderSpacing.Left = 8
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
     Color = clWindow
     Columns = <    
       item
@@ -31,53 +34,53 @@ object frmMain: TfrmMain
       end    
       item
         Title.Caption = 'N°'
-        Width = 78
+        Width = 76
         FieldName = 'numero'
       end    
       item
         Title.Caption = 'Nombre'
-        Width = 78
+        Width = 76
         FieldName = 'nombre'
       end    
       item
         Title.Caption = 'Nacimiento'
-        Width = 78
+        Width = 76
         FieldName = 'nacimiento'
       end    
       item
         Title.Caption = 'Nacionalidad'
-        Width = 78
+        Width = 76
         FieldName = 'nacionalidad'
       end    
       item
         Title.Caption = 'Ingreso'
-        Width = 78
+        Width = 76
         FieldName = 'ingreso'
       end    
       item
         Title.Caption = 'Documento'
-        Width = 78
+        Width = 76
         FieldName = 'documento'
       end    
       item
         Title.Caption = 'Domicilio'
-        Width = 78
+        Width = 76
         FieldName = 'domicilio'
       end    
       item
         Title.Caption = 'Teléfono'
-        Width = 78
+        Width = 76
         FieldName = 'telefono'
       end    
       item
         Title.Caption = 'Jubilación'
-        Width = 78
+        Width = 76
         FieldName = 'jubilacion'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Title.Caption = 'Activo'
-        Width = 81
+        Width = 79
         ValueChecked = 'T'
         ValueUnchecked = 'F'
         FieldName = 'activo'
@@ -101,6 +104,7 @@ object frmMain: TfrmMain
     ClientWidth = 800
     ParentColor = False
     TabOrder = 1
+    OnPaint = pnlMenuPaint
     object edtBuscar: TEdit
       Left = 8
       Height = 23

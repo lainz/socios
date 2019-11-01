@@ -10,6 +10,8 @@ uses
 const
   SI = 'T';
   NO = 'F';
+  GRADIENT1 = $00EEEFB1;
+  GRADIENT2 = $00CFFAFC;
 
 function ObtenerGUID: string;
 
