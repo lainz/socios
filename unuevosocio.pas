@@ -40,6 +40,9 @@ type
     procedure btnGuardarClick(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure pnlMenuPaint(Sender: TObject);
+    procedure Capitalizar(Sender: TObject);
+    procedure LimpiarNumero(Sender: TObject);
+    procedure AcomodarFecha(Sender: TObject);
   private
     procedure LlenarCamposDB(const socios: TSQLQuery);
   public
@@ -82,7 +85,8 @@ var
   pnl: TForm;
 begin
   pnl := TForm(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2,
+    GRADIENT1, gdVertical);
 end;
 
 procedure TfrmNuevoSocio.pnlMenuPaint(Sender: TObject);
@@ -90,9 +94,46 @@ var
   pnl: TPanel;
 begin
   pnl := TPanel(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1,
+    GRADIENT2, gdVertical);
   pnl.Canvas.Pen.Color := clWhite;
   pnl.Canvas.Line(0, 0, pnl.Width, 0);
+end;
+
+procedure TfrmNuevoSocio.Capitalizar(Sender: TObject);
+var
+  w: string;
+  txt, tmp: string;
+  nombres: TStringArray;
+begin
+  tmp := TEdit(Sender).Text;
+  if (not tmp.IsEmpty) then
+  begin
+    nombres := tmp.Split(' ');
+    txt := '';
+    for w in nombres do
+    begin
+      txt := txt + UTF8UppercaseFirstChar(w.ToLower) + ' ';
+    end;
+    TEdit(Sender).Text := txt.Trim;
+  end;
+end;
+
+procedure TfrmNuevoSocio.LimpiarNumero(Sender: TObject);
+var
+  txt: string;
+begin
+  txt := TEdit(Sender).Text;
+  TEdit(Sender).Text := txt.Trim.Replace('.', '', [rfReplaceAll]).Replace(' ',
+    '', [rfReplaceAll]);
+end;
+
+procedure TfrmNuevoSocio.AcomodarFecha(Sender: TObject);
+var
+  txt: string;
+begin
+  txt := TEdit(Sender).Text;
+  TEdit(Sender).Text := txt.Trim.Replace(' ', '', [rfReplaceAll]);
 end;
 
 procedure TfrmNuevoSocio.LlenarCamposDB(const socios: TSQLQuery);

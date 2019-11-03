@@ -5,7 +5,7 @@ unit utilidades;
 interface
 
 uses
-  Classes, SysUtils, Graphics, Forms, BGRABitmap, BGRABitmapTypes;
+  Classes, SysUtils, Graphics, Forms, BGRABitmap, BGRABitmapTypes, LazUTF8;
 
 const
   SI = 'T';
@@ -16,6 +16,7 @@ var
   GRADIENT2: TColor;
 
 function ObtenerGUID: string;
+function UTF8UppercaseFirstChar(s: String): String;
 
 implementation
 
@@ -29,6 +30,17 @@ begin
     Result := guid.ToString(True);
   end;
 end;
+
+function UTF8UppercaseFirstChar(s: String): String;
+var
+  ch, rest: String;
+begin
+  ch := UTF8Copy(s, 1, 1);
+  rest := Copy(s, Length(ch)+1, MaxInt);
+  Result := UTF8Uppercase(ch) + rest
+end;
+
+
 
 initialization
   GRADIENT1 := StrToBGRA('#CFDEF3');
