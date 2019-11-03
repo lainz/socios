@@ -22,7 +22,9 @@ type
     procedure btnCargarClick(Sender: TObject);
     procedure btnCambiarEstadoEliminadoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pnlMenuPaint(Sender: TObject);
   private
     procedure Mostrar;
   public
@@ -42,6 +44,14 @@ procedure TfrmCuotas.FormCreate(Sender: TObject);
 begin
   SQLQuery1.DataBase := dmsqlite.DataModule1.SQLite3Connection1;
   SQLQuery1.Transaction := dmsqlite.DataModule1.SQLTransaction1;
+end;
+
+procedure TfrmCuotas.FormPaint(Sender: TObject);
+var
+  pnl: TForm;
+begin
+  pnl := TForm(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
 end;
 
 procedure TfrmCuotas.btnCargarClick(Sender: TObject);
@@ -72,6 +82,14 @@ end;
 procedure TfrmCuotas.FormShow(Sender: TObject);
 begin
   Mostrar;
+end;
+
+procedure TfrmCuotas.pnlMenuPaint(Sender: TObject);
+var
+  pnl: TPanel;
+begin
+  pnl := TPanel(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
 end;
 
 procedure TfrmCuotas.Mostrar;

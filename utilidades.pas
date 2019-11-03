@@ -5,13 +5,15 @@ unit utilidades;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, Graphics, Forms, BGRABitmap, BGRABitmapTypes;
 
 const
   SI = 'T';
   NO = 'F';
-  GRADIENT1 = $00EEEFB1;
-  GRADIENT2 = $00CFFAFC;
+
+var
+  GRADIENT1: TColor;
+  GRADIENT2: TColor;
 
 function ObtenerGUID: string;
 
@@ -28,4 +30,7 @@ begin
   end;
 end;
 
+initialization
+  GRADIENT1 := StrToBGRA('#CFDEF3');
+  GRADIENT2 := StrToBGRA('#E0EAFC');
 end.

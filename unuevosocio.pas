@@ -15,6 +15,7 @@ type
   TfrmNuevoSocio = class(TForm)
     btnGuardar: TButton;
     btnCancelar: TButton;
+    chkVitalicio: TCheckBox;
     chkEliminado: TCheckBox;
     edtNumero: TEdit;
     edtNombre: TEdit;
@@ -37,6 +38,8 @@ type
     pnlMenu: TPanel;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
+    procedure pnlMenuPaint(Sender: TObject);
   private
     procedure LlenarCamposDB(const socios: TSQLQuery);
   public
@@ -61,7 +64,35 @@ end;
 
 procedure TfrmNuevoSocio.btnGuardarClick(Sender: TObject);
 begin
+  if (edtNumero.Text = '') then
+  begin
+    ShowMessage('Ingrese el número de socio.');
+    exit;
+  end;
+  if (edtNombre.Text = '') then
+  begin
+    ShowMessage('Ingrese el nombre del socio.');
+    exit;
+  end;
   ModalResult := mrOk;
+end;
+
+procedure TfrmNuevoSocio.FormPaint(Sender: TObject);
+var
+  pnl: TForm;
+begin
+  pnl := TForm(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
+end;
+
+procedure TfrmNuevoSocio.pnlMenuPaint(Sender: TObject);
+var
+  pnl: TPanel;
+begin
+  pnl := TPanel(Sender);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
+  pnl.Canvas.Pen.Color := clWhite;
+  pnl.Canvas.Line(0, 0, pnl.Width, 0);
 end;
 
 procedure TfrmNuevoSocio.LlenarCamposDB(const socios: TSQLQuery);
@@ -75,6 +106,10 @@ begin
   socios.FieldByName('domicilio').AsString := edtDomicilio.Text;
   socios.FieldByName('telefono').AsString := edtTelefono.Text;
   socios.FieldByName('jubilacion').AsString := edtJubilacion.Text;
+  if chkVitalicio.Checked then
+    socios.FieldByName('vitalicio').AsString := SI
+  else
+    socios.FieldByName('vitalicio').AsString := NO;
   if chkEliminado.Checked then
     socios.FieldByName('activo').AsString := SI
   else
@@ -92,6 +127,7 @@ begin
   edtDomicilio.Text := socios.FieldByName('domicilio').AsString;
   edtTelefono.Text := socios.FieldByName('telefono').AsString;
   edtJubilacion.Text := socios.FieldByName('jubilacion').AsString;
+  chkVitalicio.Checked := socios.FieldByName('vitalicio').AsString = SI;
   chkEliminado.Checked := socios.FieldByName('activo').AsString = SI;
 end;
 

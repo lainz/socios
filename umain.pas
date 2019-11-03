@@ -51,6 +51,7 @@ type
   private
     ordenarTabla: string;
     procedure ActualizarBotones;
+    function ObtenerNumeroMasAltoSocio: String;
   public
 
   end;
@@ -106,6 +107,8 @@ begin
     frmNuevoSocio.Free;
   Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
   frmNuevoSocio.Caption := 'Nuevo Socio';
+  frmNuevoSocio.edtNumero.Text := ObtenerNumeroMasAltoSocio;
+  frmNuevoSocio.edtIngreso.Text := FormatDateTime('dd/mm/yyyy', now);
   case frmNuevoSocio.ShowModal of
     mrOk:
     begin
@@ -152,6 +155,21 @@ begin
   btnVerCuotas.Enabled := mostrar;
   miEditarSocio.Enabled := mostrar;
   miVerCuotas.Enabled := mostrar;
+end;
+
+function TfrmMain.ObtenerNumeroMasAltoSocio: String;
+var
+  qry: TSQLQuery;
+begin
+  qry := TSQLQuery.Create(nil);
+  qry.DataBase := dmsqlite.DataModule1.SQLite3Connection1;
+  qry.Transaction := dmsqlite.DataModule1.SQLTransaction1;
+  qry.SQL.Text := 'SELECT max(numero+1) as max FROM socios';
+  qry.Open;
+  Result := qry.FieldByName('max').AsString;
+  if (Result = '') then
+    Result := '1';
+  qry.Free;
 end;
 
 procedure TfrmMain.edtBuscarChange(Sender: TObject);

@@ -9,6 +9,7 @@ object frmCuotas: TfrmCuotas
   ClientHeight = 400
   ClientWidth = 640
   OnCreate = FormCreate
+  OnPaint = FormPaint
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.4.0'
@@ -21,9 +22,11 @@ object frmCuotas: TfrmCuotas
     BevelOuter = bvNone
     ClientHeight = 66
     ClientWidth = 640
+    ParentColor = False
     TabOrder = 0
+    OnPaint = pnlMenuPaint
     object btnCargar: TButton
-      Left = 544
+      Left = 552
       Height = 25
       Top = 24
       Width = 75
@@ -32,7 +35,7 @@ object frmCuotas: TfrmCuotas
       TabOrder = 0
     end
     object btnCambiarEstadoEliminado: TButton
-      Left = 376
+      Left = 384
       Height = 25
       Top = 24
       Width = 155
@@ -42,13 +45,15 @@ object frmCuotas: TfrmCuotas
     end
   end
   object dbgCuotas: TDBGrid
-    Left = 0
-    Height = 334
+    Left = 8
+    Height = 326
     Top = 66
-    Width = 640
+    Width = 624
     Align = alClient
     AutoFillColumns = True
-    BorderStyle = bsNone
+    BorderSpacing.Left = 8
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
     Color = clWindow
     Columns = <    
       item
@@ -65,18 +70,18 @@ object frmCuotas: TfrmCuotas
       end    
       item
         Title.Caption = 'Mes'
-        Width = 207
+        Width = 201
         FieldName = 'mes'
       end    
       item
         Title.Caption = 'Año'
-        Width = 207
+        Width = 201
         FieldName = 'anio'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Title.Caption = 'Pagado'
-        Width = 209
+        Width = 201
         ValueChecked = 'T'
         ValueUnchecked = 'F'
         FieldName = 'pagado'

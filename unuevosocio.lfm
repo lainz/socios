@@ -8,6 +8,7 @@ object frmNuevoSocio: TfrmNuevoSocio
   Caption = 'Editar Socio'
   ClientHeight = 281
   ClientWidth = 480
+  OnPaint = FormPaint
   Position = poMainFormCenter
   LCLVersion = '2.0.4.0'
   object lblNumero: TLabel
@@ -164,6 +165,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     ClientHeight = 50
     ClientWidth = 480
     TabOrder = 9
+    OnPaint = pnlMenuPaint
     object btnGuardar: TButton
       Left = 392
       Height = 25
@@ -192,6 +194,15 @@ object frmNuevoSocio: TfrmNuevoSocio
     Checked = True
     State = cbChecked
     TabOrder = 10
+    TabStop = False
+  end
+  object chkVitalicio: TCheckBox
+    Left = 8
+    Height = 19
+    Top = 202
+    Width = 62
+    Caption = 'Vitalicio'
+    TabOrder = 11
     TabStop = False
   end
 end
