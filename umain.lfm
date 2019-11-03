@@ -33,7 +33,7 @@ object frmMain: TfrmMain
         FieldName = 'id'
       end    
       item
-        Title.Caption = 'N°'
+        Title.Caption = 'N° de Socio'
         Width = 76
         FieldName = 'numero'
       end    
@@ -214,6 +214,13 @@ object frmMain: TfrmMain
     top = 136
     object miArchivo: TMenuItem
       Caption = 'Archivo'
+      object miExportar: TMenuItem
+        Caption = 'Exportar a Excel'
+        OnClick = miExportarClick
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
       object miNuevoSocio: TMenuItem
         Caption = 'Nuevo Socio'
         OnClick = miNuevoSocioClick
@@ -234,5 +241,12 @@ object frmMain: TfrmMain
         OnClick = miSalirClick
       end
     end
+  end
+  object SaveDialog1: TSaveDialog
+    FileName = 'Socios.xls'
+    Filter = 'Excel|*.xls'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
+    left = 272
+    top = 136
   end
 end

@@ -25,6 +25,8 @@ type
     lblOrdenar: TLabel;
     lblBuscar: TLabel;
     MainMenu1: TMainMenu;
+    N2: TMenuItem;
+    miExportar: TMenuItem;
     miVerCuotas: TMenuItem;
     miEditarSocio: TMenuItem;
     miNuevoSocio: TMenuItem;
@@ -32,6 +34,7 @@ type
     N1: TMenuItem;
     miSalir: TMenuItem;
     pnlMenu: TPanel;
+    SaveDialog1: TSaveDialog;
     SQLQuery1: TSQLQuery;
     procedure btnEditarSocioClick(Sender: TObject);
     procedure btnNuevoSocioClick(Sender: TObject);
@@ -44,6 +47,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure miEditarSocioClick(Sender: TObject);
+    procedure miExportarClick(Sender: TObject);
     procedure miNuevoSocioClick(Sender: TObject);
     procedure miSalirClick(Sender: TObject);
     procedure miVerCuotasClick(Sender: TObject);
@@ -99,6 +103,17 @@ begin
     end;
   end;
   FreeAndNil(frmNuevoSocio);
+end;
+
+procedure TfrmMain.miExportarClick(Sender: TObject);
+var
+  arr: TStringArray;
+begin
+  if (SaveDialog1.Execute) then
+  begin
+    arr := TStringArray.Create('numero', 'nombre', 'nacimiento', 'nacionalidad', 'ingreso', 'documento', 'domicilio', 'telefono', 'jubilacion');
+    ExportarDatasetXLS(SQLQuery1, SaveDialog1.FileName, arr);
+  end;
 end;
 
 procedure TfrmMain.miNuevoSocioClick(Sender: TObject);
