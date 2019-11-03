@@ -214,4 +214,24 @@ object frmNuevoSocio: TfrmNuevoSocio
     TabOrder = 11
     TabStop = False
   end
+  object chkJubilado: TCheckBox
+    Left = 124
+    Height = 19
+    Top = 176
+    Width = 64
+    Caption = 'Jubilado'
+    Checked = True
+    State = cbChecked
+    TabOrder = 12
+    TabStop = False
+  end
+  object chkPensionado: TCheckBox
+    Left = 124
+    Height = 19
+    Top = 202
+    Width = 82
+    Caption = 'Pensionado'
+    TabOrder = 13
+    TabStop = False
+  end
 end

@@ -18,6 +18,7 @@ type
     btnVerCuotas: TButton;
     btnNuevoSocio: TButton;
     cbOrdenar: TComboBox;
+    chkSociosQuePuedenVotar: TCheckBox;
     chkMostrarSociosEliminados: TCheckBox;
     DataSource1: TDataSource;
     dbgSocios: TDBGrid;
@@ -41,6 +42,7 @@ type
     procedure btnVerCuotasClick(Sender: TObject);
     procedure cbOrdenarChange(Sender: TObject);
     procedure chkMostrarSociosEliminadosChange(Sender: TObject);
+    procedure chkSociosQuePuedenVotarChange(Sender: TObject);
     procedure dbgSociosDblClick(Sender: TObject);
     procedure dbgSociosTitleClick(Column: TColumn);
     procedure edtBuscarChange(Sender: TObject);
@@ -55,7 +57,7 @@ type
   private
     ordenarTabla: string;
     procedure ActualizarBotones;
-    function ObtenerNumeroMasAltoSocio: String;
+    function ObtenerNumeroMasAltoSocio: string;
   public
 
   end;
@@ -82,7 +84,8 @@ var
   pnl: TForm;
 begin
   pnl := TForm(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1,
+    GRADIENT2, gdVertical);
 end;
 
 procedure TfrmMain.miEditarSocioClick(Sender: TObject);
@@ -111,7 +114,8 @@ var
 begin
   if (SaveDialog1.Execute) then
   begin
-    arr := TStringArray.Create('numero', 'nombre', 'nacimiento', 'nacionalidad', 'ingreso', 'documento', 'domicilio', 'telefono', 'jubilacion');
+    arr := TStringArray.Create('numero', 'nombre', 'nacimiento',
+      'nacionalidad', 'ingreso', 'documento', 'domicilio', 'telefono', 'jubilacion');
     ExportarDatasetXLS(SQLQuery1, SaveDialog1.FileName, arr);
   end;
 end;
@@ -158,7 +162,8 @@ var
   pnl: TPanel;
 begin
   pnl := TPanel(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2,
+    GRADIENT1, gdVertical);
 end;
 
 procedure TfrmMain.ActualizarBotones;
@@ -166,13 +171,26 @@ var
   mostrar: boolean;
 begin
   mostrar := not SQLQuery1.IsEmpty;
+  if (chkSociosQuePuedenVotar.Checked) then
+  begin
+    mostrar := False;
+    btnNuevoSocio.Enabled := mostrar;
+    miNuevoSocio.Enabled := mostrar;
+    chkMostrarSociosEliminados.Enabled := False;
+  end
+  else
+  begin
+    btnNuevoSocio.Enabled := True;
+    miNuevoSocio.Enabled := True;
+    chkMostrarSociosEliminados.Enabled := True;
+  end;
   btnEditarSocio.Enabled := mostrar;
   btnVerCuotas.Enabled := mostrar;
   miEditarSocio.Enabled := mostrar;
   miVerCuotas.Enabled := mostrar;
 end;
 
-function TfrmMain.ObtenerNumeroMasAltoSocio: String;
+function TfrmMain.ObtenerNumeroMasAltoSocio: string;
 var
   qry: TSQLQuery;
 begin
@@ -228,11 +246,23 @@ begin
     8: ordenarTabla := 'jubilacion';
   end;
   SQLQuery1.Active := False;
-  if (chkMostrarSociosEliminados.Checked) then
-    SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla
+  if (chkSociosQuePuedenVotar.Checked) then
+  begin
+    SQLQuery1.SQL.Text :=
+
+      'SELECT * FROM socios WHERE (jubilado = ''T'' or pensionado = ''T'' or vitalicio = ''T'') and activo = ''T'''
+      +
+      LineEnding +
+      'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-0 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-1 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-2 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-3 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-4 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-5 month''))))' + LineEnding + 'ORDER BY ' + ordenarTabla;
+  end
   else
-    SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE activo = ''T'' ORDER BY ' +
-      ordenarTabla;
+  begin
+    if (chkMostrarSociosEliminados.Checked) then
+      SQLQuery1.SQL.Text := 'SELECT * FROM socios ORDER BY ' + ordenarTabla
+    else
+      SQLQuery1.SQL.Text := 'SELECT * FROM socios WHERE activo = ''T'' ORDER BY ' +
+        ordenarTabla;
+  end;
   SQLQuery1.Active := True;
   ActualizarBotones;
 end;
@@ -255,6 +285,13 @@ end;
 procedure TfrmMain.chkMostrarSociosEliminadosChange(Sender: TObject);
 begin
   cbOrdenarChange(nil);
+end;
+
+procedure TfrmMain.chkSociosQuePuedenVotarChange(Sender: TObject);
+begin
+  edtBuscar.Clear;
+  dbgSociosTitleClick(dbgSocios.Columns[2]);
+  ActualizarBotones;
 end;
 
 procedure TfrmMain.dbgSociosDblClick(Sender: TObject);

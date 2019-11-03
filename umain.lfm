@@ -155,9 +155,9 @@ object frmMain: TfrmMain
     object chkMostrarSociosEliminados: TCheckBox
       Left = 376
       Height = 19
-      Top = 24
-      Width = 147
-      Caption = 'Mostrar socios inactivos'
+      Top = 32
+      Width = 123
+      Caption = 'Ver socios inactivos'
       OnChange = chkMostrarSociosEliminadosChange
       TabOrder = 2
     end
@@ -190,6 +190,15 @@ object frmMain: TfrmMain
       Caption = 'Nuevo Socio'
       OnClick = btnNuevoSocioClick
       TabOrder = 5
+    end
+    object chkSociosQuePuedenVotar: TCheckBox
+      Left = 376
+      Height = 19
+      Top = 8
+      Width = 169
+      Caption = 'Ver socios que pueden votar'
+      OnChange = chkSociosQuePuedenVotarChange
+      TabOrder = 6
     end
   end
   object DataSource1: TDataSource

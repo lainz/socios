@@ -15,6 +15,8 @@ type
   TfrmNuevoSocio = class(TForm)
     btnGuardar: TButton;
     btnCancelar: TButton;
+    chkJubilado: TCheckBox;
+    chkPensionado: TCheckBox;
     chkVitalicio: TCheckBox;
     chkEliminado: TCheckBox;
     edtNumero: TEdit;
@@ -151,6 +153,14 @@ begin
     socios.FieldByName('vitalicio').AsString := SI
   else
     socios.FieldByName('vitalicio').AsString := NO;
+  if chkJubilado.Checked then
+    socios.FieldByName('jubilado').AsString := SI
+  else
+    socios.FieldByName('jubilado').AsString := NO;
+  if chkPensionado.Checked then
+    socios.FieldByName('pensionado').AsString := SI
+  else
+    socios.FieldByName('pensionado').AsString := NO;
   if chkEliminado.Checked then
     socios.FieldByName('activo').AsString := SI
   else
@@ -169,6 +179,8 @@ begin
   edtTelefono.Text := socios.FieldByName('telefono').AsString;
   edtJubilacion.Text := socios.FieldByName('jubilacion').AsString;
   chkVitalicio.Checked := socios.FieldByName('vitalicio').AsString = SI;
+  chkJubilado.Checked := socios.FieldByName('jubilado').AsString = SI;
+  chkPensionado.Checked := socios.FieldByName('pensionado').AsString = SI;
   chkEliminado.Checked := socios.FieldByName('activo').AsString = SI;
 end;
 
