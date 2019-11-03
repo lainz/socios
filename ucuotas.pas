@@ -51,7 +51,8 @@ var
   pnl: TForm;
 begin
   pnl := TForm(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1, GRADIENT2, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT1,
+    GRADIENT2, gdVertical);
 end;
 
 procedure TfrmCuotas.btnCargarClick(Sender: TObject);
@@ -89,7 +90,8 @@ var
   pnl: TPanel;
 begin
   pnl := TPanel(Sender);
-  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2, GRADIENT1, gdVertical);
+  pnl.Canvas.GradientFill(Rect(0, 0, pnl.Width, pnl.Height), GRADIENT2,
+    GRADIENT1, gdVertical);
 end;
 
 procedure TfrmCuotas.Mostrar;

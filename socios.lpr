@@ -17,7 +17,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
 
 begin
   RequireDerivedFormResource := True;
-  Application.Title:='Socios';
+  Application.Title := 'Socios';
   Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TDataModule1, DataModule1);

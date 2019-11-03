@@ -5,7 +5,8 @@ unit utilidades;
 interface
 
 uses
-  Classes, SysUtils, Graphics, Forms, BGRABitmap, BGRABitmapTypes, LazUTF8, fpsexport, sqldb;
+  Classes, SysUtils, Graphics, Forms, BGRABitmap, BGRABitmapTypes,
+  LazUTF8, fpsexport, sqldb;
 
 const
   SI = 'T';
@@ -17,7 +18,8 @@ var
 
 function ObtenerGUID: string;
 function UTF8UppercaseFirstChar(s: string): string;
-function ExportarDatasetXLS(aSQLDataset: TSQLQuery; aFileName: string; aFields: TStringArray): boolean; overload;
+function ExportarDatasetXLS(aSQLDataset: TSQLQuery; aFileName: string;
+  aFields: TStringArray): boolean; overload;
 
 implementation
 
@@ -41,12 +43,13 @@ begin
   Result := UTF8Uppercase(ch) + rest;
 end;
 
-function ExportarDatasetXLS(aSQLDataset: TSQLQuery; aFileName: string; aFields: TStringArray): boolean;
+function ExportarDatasetXLS(aSQLDataset: TSQLQuery; aFileName: string;
+  aFields: TStringArray): boolean;
   overload;
 var
   Exp: TFPSExport;
   ExpSettings: TFPSExportFormatSettings;
-  s: String;
+  s: string;
 begin
   aSQLDataset.First; //assume we have a dataset called aSQLDataset
   Exp := TFPSExport.Create(nil);

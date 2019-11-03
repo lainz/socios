@@ -251,8 +251,7 @@ begin
     SQLQuery1.SQL.Text :=
 
       'SELECT * FROM socios WHERE (jubilado = ''T'' or pensionado = ''T'' or vitalicio = ''T'') and activo = ''T'''
-      +
-      LineEnding +
+      + LineEnding +
       'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-0 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-1 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-2 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-3 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-4 month''))))' + LineEnding + 'and (SELECT count(*) FROM cuotas WHERE cuotas.idsocio=socios.id and cuotas.pagado=''T'' and cuotas.anio = strftime(''%Y'',''now'') and (cuotas.mes = strftime(''%m'',datetime(''now'',''start of month'',''-5 month''))))' + LineEnding + 'ORDER BY ' + ordenarTabla;
   end
   else
