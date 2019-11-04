@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqlite3conn, sqldb, DB, Forms, Controls, Graphics, Dialogs,
   DBGrids, ExtCtrls, StdCtrls, Menus, dmsqlite, unuevosocio, ucuotas,
-  utilidades;
+  utilidades, ulogin;
 
 type
 
@@ -73,6 +73,18 @@ implementation
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  Application.CreateForm(TfrmLogin, frmLogin);
+
+  case (frmLogin.ShowModal) of
+    mrCancel: begin
+      Application.Terminate;
+    end;
+    mrOk: begin
+      Show;
+      frmLogin.Free;
+    end;
+  end;
+
   SQLQuery1.DataBase := dmsqlite.DataModule1.SQLite3Connection1;
   SQLQuery1.Transaction := dmsqlite.DataModule1.SQLTransaction1;
   cbOrdenar.ItemIndex := 1;

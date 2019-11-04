@@ -11,6 +11,7 @@ uses
 const
   SI = 'T';
   NO = 'F';
+  PASSWORD = 'marinero2019';
 
 var
   GRADIENT1: TColor;

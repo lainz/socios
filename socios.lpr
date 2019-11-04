@@ -11,7 +11,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   unuevosocio,
   utilidades,
   ucuotas,
-  ucargarcuotas { you can add units after this };
+  ucargarcuotas, ulogin { you can add units after this };
 
 {$R *.res}
 
@@ -19,9 +19,9 @@ begin
   RequireDerivedFormResource := True;
   Application.Title := 'Socios';
   Application.Scaled := True;
+  Application.ShowMainForm := False;
   Application.Initialize;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmCuotas, frmCuotas);
   Application.Run;
 end.
