@@ -224,9 +224,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DefaultToday = True
     DateOrder = doNone
-    DateFormat = 'YYYY/MM/DD'
     ButtonWidth = 23
-    DirectInput = False
     NumGlyphs = 1
     MaxLength = 0
     TabOrder = 12
@@ -238,9 +236,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DateOrder = doNone
-    DateFormat = 'YYYY/MM/DD'
     ButtonWidth = 23
-    DirectInput = False
     NumGlyphs = 1
     MaxLength = 0
     TabOrder = 13
