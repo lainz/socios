@@ -43,7 +43,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 2
+    TabOrder = 3
   end
   object lblNacimiento: TLabel
     Left = 168
@@ -68,7 +68,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 3
+    TabOrder = 5
   end
   object lblIngreso: TLabel
     Left = 168
@@ -93,7 +93,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 4
+    TabOrder = 6
   end
   object lblDomicilio: TLabel
     Left = 168
@@ -110,7 +110,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 5
+    TabOrder = 7
   end
   object lblTelefono: TLabel
     Left = 328
@@ -127,7 +127,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 6
+    TabOrder = 8
   end
   object lblJubilacion: TLabel
     Left = 328
@@ -144,7 +144,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 1
+    TabOrder = 2
   end
   object pnlMenu: TPanel
     Left = 0
@@ -155,7 +155,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     BevelOuter = bvNone
     ClientHeight = 50
     ClientWidth = 480
-    TabOrder = 7
+    TabOrder = 9
     OnPaint = pnlMenuPaint
     object btnGuardar: TButton
       Left = 392
@@ -184,7 +184,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Caption = 'Activo'
     Checked = True
     State = cbChecked
-    TabOrder = 8
+    TabOrder = 10
     TabStop = False
   end
   object chkVitalicio: TCheckBox
@@ -193,7 +193,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Top = 202
     Width = 62
     Caption = 'Vitalicio'
-    TabOrder = 9
+    TabOrder = 11
     TabStop = False
   end
   object chkJubilado: TCheckBox
@@ -204,7 +204,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Caption = 'Jubilado'
     Checked = True
     State = cbChecked
-    TabOrder = 10
+    TabOrder = 12
     TabStop = False
   end
   object chkPensionado: TCheckBox
@@ -213,7 +213,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Top = 202
     Width = 82
     Caption = 'Pensionado'
-    TabOrder = 11
+    TabOrder = 13
     TabStop = False
   end
   object edtIngreso: TDateEdit
@@ -227,7 +227,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 12
+    TabOrder = 1
   end
   object edtNacimiento: TDateEdit
     Left = 168
@@ -239,6 +239,6 @@ object frmNuevoSocio: TfrmNuevoSocio
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 13
+    TabOrder = 4
   end
 end
