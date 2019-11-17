@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  utilidades, sqldb;
+  EditBtn, utilidades, sqldb;
 
 type
 
@@ -19,11 +19,11 @@ type
     chkPensionado: TCheckBox;
     chkVitalicio: TCheckBox;
     chkEliminado: TCheckBox;
+    edtIngreso: TDateEdit;
+    edtNacimiento: TDateEdit;
     edtNumero: TEdit;
     edtNombre: TEdit;
-    edtNacimiento: TEdit;
     edtNacionalidad: TEdit;
-    edtIngreso: TEdit;
     edtDocumento: TEdit;
     edtDomicilio: TEdit;
     edtTelefono: TEdit;

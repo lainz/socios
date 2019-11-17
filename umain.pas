@@ -139,7 +139,6 @@ begin
   Application.CreateForm(TfrmNuevoSocio, frmNuevoSocio);
   frmNuevoSocio.Caption := 'Nuevo Socio';
   frmNuevoSocio.edtNumero.Text := ObtenerNumeroMasAltoSocio;
-  frmNuevoSocio.edtIngreso.Text := FormatDateTime('dd/mm/yyyy', now);
   case frmNuevoSocio.ShowModal of
     mrOk:
     begin

@@ -10,7 +10,7 @@ object frmNuevoSocio: TfrmNuevoSocio
   ClientWidth = 480
   OnPaint = FormPaint
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object lblNumero: TLabel
     Left = 8
     Height = 15
@@ -43,7 +43,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 3
+    TabOrder = 2
   end
   object lblNacimiento: TLabel
     Left = 168
@@ -52,15 +52,6 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 65
     Caption = 'Nacimiento:'
     ParentColor = False
-  end
-  object edtNacimiento: TEdit
-    Left = 168
-    Height = 23
-    Top = 80
-    Width = 144
-    MaxLength = 50
-    OnEditingDone = AcomodarFecha
-    TabOrder = 4
   end
   object lblNacionalidad: TLabel
     Left = 328
@@ -77,7 +68,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 5
+    TabOrder = 3
   end
   object lblIngreso: TLabel
     Left = 168
@@ -86,15 +77,6 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 42
     Caption = 'Ingreso:'
     ParentColor = False
-  end
-  object edtIngreso: TEdit
-    Left = 168
-    Height = 23
-    Top = 24
-    Width = 144
-    MaxLength = 50
-    OnEditingDone = AcomodarFecha
-    TabOrder = 1
   end
   object lblDocumento: TLabel
     Left = 8
@@ -111,7 +93,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 6
+    TabOrder = 4
   end
   object lblDomicilio: TLabel
     Left = 168
@@ -128,7 +110,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = Capitalizar
-    TabOrder = 7
+    TabOrder = 5
   end
   object lblTelefono: TLabel
     Left = 328
@@ -145,7 +127,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 8
+    TabOrder = 6
   end
   object lblJubilacion: TLabel
     Left = 328
@@ -162,7 +144,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Width = 144
     MaxLength = 50
     OnEditingDone = LimpiarNumero
-    TabOrder = 2
+    TabOrder = 1
   end
   object pnlMenu: TPanel
     Left = 0
@@ -173,7 +155,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     BevelOuter = bvNone
     ClientHeight = 50
     ClientWidth = 480
-    TabOrder = 9
+    TabOrder = 7
     OnPaint = pnlMenuPaint
     object btnGuardar: TButton
       Left = 392
@@ -202,7 +184,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Caption = 'Activo'
     Checked = True
     State = cbChecked
-    TabOrder = 10
+    TabOrder = 8
     TabStop = False
   end
   object chkVitalicio: TCheckBox
@@ -211,7 +193,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Top = 202
     Width = 62
     Caption = 'Vitalicio'
-    TabOrder = 11
+    TabOrder = 9
     TabStop = False
   end
   object chkJubilado: TCheckBox
@@ -222,7 +204,7 @@ object frmNuevoSocio: TfrmNuevoSocio
     Caption = 'Jubilado'
     Checked = True
     State = cbChecked
-    TabOrder = 12
+    TabOrder = 10
     TabStop = False
   end
   object chkPensionado: TCheckBox
@@ -231,7 +213,36 @@ object frmNuevoSocio: TfrmNuevoSocio
     Top = 202
     Width = 82
     Caption = 'Pensionado'
-    TabOrder = 13
+    TabOrder = 11
     TabStop = False
+  end
+  object edtIngreso: TDateEdit
+    Left = 168
+    Height = 23
+    Top = 24
+    Width = 144
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DefaultToday = True
+    DateOrder = doNone
+    DateFormat = 'YYYY/MM/DD'
+    ButtonWidth = 23
+    DirectInput = False
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 12
+  end
+  object edtNacimiento: TDateEdit
+    Left = 168
+    Height = 23
+    Top = 80
+    Width = 144
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DateOrder = doNone
+    DateFormat = 'YYYY/MM/DD'
+    ButtonWidth = 23
+    DirectInput = False
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 13
   end
 end
